@@ -3,7 +3,7 @@
 #This script helps to communicate and retrieve information from GitHub
 
 # Prompt user for Personal Access Token (PAT)
-read -p "Enter your Personal Access Token: " PAT
+read -s -p "Enter your Personal Access Token: " PAT
 
 # Prompt for API endpoint
 read -p "Enter the GitHub API endpoint you want to access: " API_ENDPOINT
