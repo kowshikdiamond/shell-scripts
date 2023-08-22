@@ -44,19 +44,34 @@ home_space()
 
 ##### Main
 
-cat <<- _EOF_
-  <html>
-  <head>
-      <title>$TITLE</title>
-  </head>
+# Integrate the file creation code here
+read -p "Enter a file name (without extension): " input_name
 
-  <body>
-      <h1>$TITLE</h1>
-      <p>$TIME_STAMP</p>
-      $(system_info)
-      $(show_uptime)
-      $(drive_space)
-      $(home_space)
-  </body>
-  </html>
+if [ -z "$input_name" ]; then
+    filename="default.html"
+else
+    filename="$input_name.html"
+fi
+
+# Create the file
+touch "$filename"
+
+# Redirect the output to the HTML file
+{
+    cat <<- _EOF_
+    <html>
+    <head>
+        <title>$TITLE</title>
+    </head>
+    <body>
+        <h1>$TITLE</h1>
+        <p>$TIME_STAMP</p>
+        $(system_info)
+        $(show_uptime)
+        $(drive_space)
+        $(home_space)
+    </body>
+    </html>
 _EOF_
+} > "$filename"
+
